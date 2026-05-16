@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Today I Choose to Grow — Michael Anthony</title>
+  <meta name="description" content="A 90-day post-traumatic growth journal built from real suffering, real research, and ten years of working with veterans and first responders." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ──────────────────────────────────── */
+    :root {
+      --bg:        #111009;
+      --bg-mid:    #1a1712;
+      --bg-light:  #232018;
+      --cream:     #e9e0ce;
+      --cream-dim: #b8ad9a;
+      --gold:      #b8924a;
+      --gold-dim:  #7a6030;
+      --rule:      rgba(184,146,74,0.25);
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'Lora', Georgia, serif;
+    }
+
+    /* ── RESET ───────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: 18px;
+      line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── LAYOUT HELPERS ──────────────────────────── */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .container--wide {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    /* ── FADE-IN ON SCROLL ───────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ══════════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════════ */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0 60px;
+      /* subtle grain texture */
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(184,146,74,0.07) 0%, transparent 70%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      background-size: cover, 200px 200px;
+    }
+    #hero .container {
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 1s 0.2s forwards;
+    }
+    .hero-headline {
+      font-family: var(--ff-display);
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 1s 0.4s forwards;
+    }
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-family: var(--ff-body);
+      font-size: 1.1rem;
+      color: var(--cream-dim);
+      max-width: 540px;
+      margin: 0 auto 48px;
+      line-height: 1.75;
+      opacity: 0;
+      animation: fadeUp 1s 0.6s forwards;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 1s 0.8s forwards;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+      font-family: var(--ff-body);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover {
+      background: #d4a85a;
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      border: 1px solid rgba(233,224,206,0.3);
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      animation: fadeIn 1s 1.4s forwards;
+    }
+    .hero-scroll span {
+      display: block;
+      width: 1px;
+      height: 48px;
+      background: var(--gold-dim);
+      margin: 0 auto;
+      animation: growLine 2s 1.6s ease-in-out infinite;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      to { opacity: 0.5; }
+    }
+    @keyframes growLine {
+      0%, 100% { transform: scaleY(0); transform-origin: top; }
+      50%       { transform: scaleY(1); transform-origin: top; }
+    }
+
+    /* ══════════════════════════════════════════════
+       SECTION BASE
+    ══════════════════════════════════════════════ */
+    .section {
+      padding: 96px 0;
+    }
+    .section--dark {
+      background: var(--bg);
+    }
+    .section--mid {
+      background: var(--bg-mid);
+    }
+    .section--light {
+      background: var(--bg-light);
+    }
+    .section-label {
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 32px;
+      color: var(--cream);
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    p {
+      margin-bottom: 1.4em;
+      color: var(--cream-dim);
+    }
+    p:last-child { margin-bottom: 0; }
+    .drop-cap::first-letter {
+      font-family: var(--ff-display);
+      font-size: 4em;
+      font-weight: 300;
+      float: left;
+      line-height: 0.8;
+      margin: 0.08em 0.12em 0 0;
+      color: var(--gold);
+    }
+
+    /* ══════════════════════════════════════════════
+       STORY SECTION
+    ══════════════════════════════════════════════ */
+    #story .section-title {
+      margin-bottom: 12px;
+    }
+    .story-byline {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 48px;
+      display: block;
+    }
+    .pull-quote {
+      border-left: 2px solid var(--gold);
+      padding: 4px 0 4px 28px;
+      margin: 48px 0;
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--cream);
+    }
+    .credential-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 32px;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid var(--rule);
+    }
+    .credential-item {
+      font-family: var(--ff-body);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ══════════════════════════════════════════════
+       PTG EXPLAINER
+    ══════════════════════════════════════════════ */
+    #ptg .section-title { margin-bottom: 40px; }
+    .domains-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin: 48px 0 0;
+    }
+    .domain-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--rule);
+      padding: 28px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .domain-card:hover {
+      border-color: var(--gold-dim);
+      background: rgba(184,146,74,0.04);
+    }
+    .domain-number {
+      font-family: var(--ff-display);
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--gold-dim);
+      display: block;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .domain-name {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--cream);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .domain-desc {
+      font-family: var(--ff-body);
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════════════
+       WHO IT'S FOR
+    ══════════════════════════════════════════════ */
+    #for .section-title { margin-bottom: 40px; }
+    .for-list {
+      list-style: none;
+      margin: 40px 0;
+    }
+    .for-list li {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--ff-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.5;
+      padding-left: 20px;
+      position: relative;
+    }
+    .for-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .for-list li:first-child { border-top: 1px solid var(--rule); }
+
+    /* ══════════════════════════════════════════════
+       HOW IT WORKS
+    ══════════════════════════════════════════════ */
+    #how .section-title { margin-bottom: 12px; }
+    .pathway-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin: 40px 0;
+    }
+    .pathway-card {
+      padding: 36px;
+      border: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+    .pathway-card--essential { background: rgba(255,255,255,0.015); }
+    .pathway-card--extended  { background: rgba(184,146,74,0.04); border-color: var(--gold-dim); }
+    .pathway-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 16px;
+    }
+    .pathway-title {
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 16px;
+    }
+    .pathway-desc {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════════════════
+       FREE PREVIEW / DOWNLOAD
+    ══════════════════════════════════════════════ */
+    #preview {
+      background: var(--bg-mid);
+      position: relative;
+      overflow: hidden;
+    }
+    #preview::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(184,146,74,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    #preview .section-title { margin-bottom: 16px; }
+    .preview-sub {
+      font-size: 1rem;
+      color: var(--cream-dim);
+      margin-bottom: 48px;
+      max-width: 500px;
+    }
+    .preview-includes {
+      list-style: none;
+      margin: 0 0 40px;
+    }
+    .preview-includes li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .preview-includes li::before {
+      content: '✓';
+      color: var(--gold);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .download-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 480px;
+    }
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+    .form-input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--cream);
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-input::placeholder { color: rgba(184,173,154,0.4); }
+    .form-input:focus { border-color: var(--gold); }
+    .form-note {
+      font-size: 0.78rem;
+      color: rgba(184,173,154,0.5);
+      margin-top: 8px;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .journal-mockup {
+      background: var(--bg-light);
+      border: 1px solid var(--rule);
+      padding: 40px 32px;
+      position: relative;
+    }
+    .journal-mockup::before {
+      content: 'TODAY I CHOOSE TO GROW';
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .journal-mockup-title {
+      font-family: var(--ff-display);
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .journal-mockup-sub {
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 32px;
+    }
+    .journal-day-preview {
+      border-top: 1px solid var(--rule);
+      padding-top: 20px;
+    }
+    .journal-day-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .journal-day-title {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .journal-day-desc {
+      font-size: 0.8rem;
+      color: var(--cream-dim);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .journal-dots {
+      margin-top: 20px;
+      display: flex;
+      gap: 6px;
+    }
+    .journal-dots span {
+      width: 28px;
+      height: 3px;
+      background: var(--rule);
+      border-radius: 2px;
+    }
+    .journal-dots span:first-child { background: var(--gold); }
+
+    /* ══════════════════════════════════════════════
+       PRE-ORDER / WAITLIST
+    ══════════════════════════════════════════════ */
+    #preorder {
+      background: var(--bg);
+    }
+    .preorder-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 48px;
+    }
+    .order-card {
+      padding: 48px 40px;
+      border: 1px solid var(--rule);
+      transition: border-color 0.2s;
+    }
+    .order-card:hover { border-color: var(--gold-dim); }
+    .order-card--featured {
+      border-color: var(--gold-dim);
+      background: rgba(184,146,74,0.04);
+      position: relative;
+    }
+    .order-badge {
+      position: absolute;
+      top: -1px;
+      right: 32px;
+      background: var(--gold);
+      color: var(--bg);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+    }
+    .order-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 12px;
+    }
+    .order-title {
+      font-family: var(--ff-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .order-price {
+      font-family: var(--ff-display);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--gold);
+      display: block;
+      margin: 16px 0 4px;
+      line-height: 1;
+    }
+    .order-price-note {
+      font-size: 0.78rem;
+      color: var(--cream-dim);
+      margin-bottom: 28px;
+    }
+    .order-features {
+      list-style: none;
+      margin: 0 0 32px;
+    }
+    .order-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--rule);
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .order-features li::before { content: '—'; color: var(--gold-dim); flex-shrink: 0; }
+
+    /* waitlist form */
+    .waitlist-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* ══════════════════════════════════════════════
+       CLOSING CTA
+    ══════════════════════════════════════════════ */
+    #closing {
+      padding: 120px 0;
+      text-align: center;
+      background: var(--bg);
+      position: relative;
+    }
+    #closing::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(184,146,74,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .closing-title {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.2;
+      max-width: 640px;
+      margin: 0 auto 16px;
+    }
+    .closing-sub {
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      max-width: 420px;
+      margin: 0 auto 40px;
+    }
+
+    /* ══════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════ */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--rule);
+      text-align: center;
+    }
+    .footer-name {
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      color: var(--cream-dim);
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+    .footer-note {
+      font-size: 0.78rem;
+      color: rgba(184,173,154,0.35);
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 12px;
+    }
+    .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(184,173,154,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .footer-links a:hover { color: var(--gold); text-decoration: none; }
+
+    /* ══════════════════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════════════════ */
+    #site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      /* starts transparent, transitions to solid on scroll */
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 0.35s ease, border-color 0.35s ease,
+                  backdrop-filter 0.35s ease;
+    }
+    #site-nav.scrolled {
+      background: rgba(17,16,9,0.92);
+      border-color: var(--rule);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--cream);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .nav-logo:hover { color: var(--gold); text-decoration: none; }
+    .nav-logo span { color: var(--gold); font-style: italic; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--ff-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--gold); text-decoration: none; }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--bg) !important;
+      padding: 9px 22px;
+      font-size: 0.72rem !important;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover {
+      background: #d4a85a !important;
+      color: var(--bg) !important;
+      transform: translateY(-1px);
+      text-decoration: none !important;
+    }
+
+    /* Hamburger (mobile) */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* push hero down so nav doesn't overlap it */
+    body { padding-top: 64px; }
+    #hero { padding-top: 60px; }
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════ */
+    @media (max-width: 680px) {
+      body { font-size: 16px; }
+      .domains-grid { grid-template-columns: 1fr; }
+      .pathway-grid { grid-template-columns: 1fr; }
+      .preview-grid { grid-template-columns: 1fr; }
+      .preorder-grid { grid-template-columns: 1fr; }
+      .form-row { flex-direction: column; }
+      .section { padding: 64px 0; }
+      #closing { padding: 80px 0; }
+
+      /* mobile nav */
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(17,16,9,0.97);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 20px 0 32px;
+        border-bottom: 1px solid var(--rule);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; text-align: center; }
+      .nav-links a {
+        display: block;
+        padding: 14px 0;
+        font-size: 0.85rem;
+        border-bottom: 1px solid rgba(184,146,74,0.08);
+      }
+      .nav-links li:last-child a {
+        margin: 20px 40px 0;
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════ -->
+  <nav id="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+
+      <!-- Logo / name -->
+      <a href="#hero" class="nav-logo">
+        Michael Anthony &nbsp;<span>Grows</span>
+      </a>
+
+      <!-- Hamburger toggle (mobile only) -->
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <!-- Links -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#story">My Story</a></li>
+        <li><a href="#for">The Journal</a></li>
+        <li><a href="#preview">Free Preview</a></li>
+        <li><a href="#preorder" class="nav-cta">Pre-Order</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="container">
+      <span class="hero-eyebrow">michaelanthony &nbsp;·&nbsp; Today I Choose to Grow</span>
+      <h1 class="hero-headline">
+        You've been carrying this<br>
+        <em>long enough.</em>
+      </h1>
+      <p class="hero-sub">
+        A 90-day post-traumatic growth journal built from real suffering,
+        real research, and ten years of walking people back from their darkest places.
+      </p>
+      <div class="hero-ctas">
+        <a href="#preview" class="btn-primary">Get the Free Preview</a>
+        <a href="#story" class="btn-ghost">Read My Story</a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true"><span></span></div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ══════════════════════════════════════════════
+       STORY
+  ══════════════════════════════════════════════ -->
+  <section id="story" class="section section--dark">
+    <div class="container">
+
+      <div class="reveal">
+        <span class="section-label">My story</span>
+        <h2 class="section-title">I almost didn't<br><em>make it back.</em></h2>
+        <span class="story-byline">— Michael Anthony, Retired U.S. Army Major</span>
+      </div>
+
+      <div class="reveal">
+        <p class="drop-cap">
+          Not in the dramatic, cinematic sense — though there were moments like
+          that too. I mean I almost didn't make it back to myself. To the person
+          I was capable of being. To a life that felt worth living.
+        </p>
+        <p>
+          I served in Iraq during the surge — one of the most operationally
+          intense periods of the entire war. I have been in places and seen things
+          that changed the architecture of who I am in ways I am still discovering.
+          But the moment that cracked everything open wasn't a firefight. It was
+          Christmas Day, 2008. FOB Diamondback, Mosul. A rocket attack that could
+          have killed me and didn't.
+        </p>
+        <p>
+          Twelve days later, my mother died.
+        </p>
+        <p>
+          Her name was Ginnie Anthony. She was 58 years old. The official cause
+          of death was heart failure. The real cause was alcohol. She had struggled
+          with it for years — and in 2007, I had helped her find her way to sobriety.
+          I sat with her through the hard nights. I watched her come back to herself.
+          And then I received orders to deploy to Iraq.
+        </p>
+        <p>
+          Within eight months of my boots hitting the ground, she was gone.
+        </p>
+        <p>
+          I was in the middle of a war zone when I got the call. The operational
+          tempo of the surge meant I could not come home. I could not stand at her
+          grave. I could not hold my family. I could not grieve.
+        </p>
+        <p>
+          So I didn't. Not then. Not for a long time.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <blockquote class="pull-quote">
+          "I carried the grief, the guilt, and a shame so heavy
+          I couldn't find the bottom of it."
+        </blockquote>
+      </div>
+
+      <div class="reveal">
+        <p>
+          I had decided — somewhere in the dark logic of a wounded mind — that if
+          I had never deployed, if I had stayed home, I could have kept her sober.
+          Her death was my fault.
+        </p>
+        <p>
+          That belief was wrong. I know that now. But it took me more than ten
+          years — and the death of my father — to understand it.
+        </p>
+        <p>
+          When my father died, I looked at what his life had become. The sadness.
+          The drinking. The slow erosion of a man I loved. And I saw myself. Not
+          who I was yet, but who I was becoming. The same current was pulling me
+          toward the same shore. And I had a choice to make.
+        </p>
+        <p>
+          I chose to grow.
+        </p>
+        <p>
+          That choice didn't fix everything overnight. It was a decision — made
+          imperfectly, renewed daily — to stop letting the worst things that had
+          happened to me write the rest of my story. To stop carrying blame that
+          was never mine. To stop drinking to quiet the things I needed to face.
+          To learn, slowly and honestly, how to transform suffering into something
+          that could help me — and eventually, help other people.
+        </p>
+        <p>
+          For the past ten years, I have shared what I learned with hundreds of
+          veterans and first responders. I have sat with people in dark rooms and
+          dark seasons and watched something shift. Watched people stop surviving
+          and start living again.
+        </p>
+        <p>
+          <strong style="color:var(--cream);">This journal is what I wish someone had handed me when I was at my worst.</strong>
+          Not theory. Not credentials. A life that had to be rebuilt from the
+          ground up, and a framework that made the rebuilding possible.
+        </p>
+      </div>
+
+      <div class="reveal">
+        <div class="credential-bar">
+          <span class="credential-item">Retired U.S. Army Major</span>
+          <span class="credential-item">Combat Veteran — Iraq Surge</span>
+          <span class="credential-item">10+ Years with Veterans &amp; First Responders</span>
+          <span class="credential-item">Post-Traumatic Growth Practitioner</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ══════════════════════════════════════════════
+       WHAT IS PTG
+  ══════════════════════════════════════════════ -->
+  <section id="ptg" class="section section--mid">
+    <div class="container">
+
+      <div class="reveal">
+        <span class="section-label">The framework</span>
+        <h2 class="section-title">Post-traumatic growth is not<br><em>the absence of pain.</em></h2>
+      </div>
+
+      <div class="reveal">
+        <p>
+          It is not pretending that what happened to you didn't happen, or that
+          it didn't matter, or that you are fine.
+        </p>
+        <p>
+          Post-traumatic growth is the experience of positive psychological
+          change that can emerge from the struggle with highly challenging life
+          circumstances. It was first studied and named by Drs. Richard Tedeschi
+          and Lawrence Calhoun at the University of North Carolina — two researchers
+          who spent decades documenting something that survivors had known
+          intuitively for centuries: that human beings are capable not just of
+          recovering from trauma, but of being fundamentally transformed by it.
+        </p>
+        <p>
+          That transformation doesn't happen automatically. It doesn't mean your
+          trauma was somehow worth it, or that the people you lost didn't matter.
+          What it means is that within the hardest experiences of your life, there
+          is the potential — if you are willing to do the work — for something
+          real and lasting to grow.
+        </p>
+        <p>
+          Tedeschi and Calhoun identified five domains where this growth most
+          commonly occurs. This journal is built on all five.
+        </p>
+      </div>
+
+      <div class="domains-grid reveal">
+        <div class="domain-card">
+          <span class="domain-number">01</span>
+          <span class="domain-name">Appreciation of Life</span>
+          <p class="domain-desc">A deeper recognition of the value of living, often sharpened by proximity to loss.</p>
+        </div>
+        <div class="domain-card">
+          <span class="domain-number">02</span>
+          <span class="domain-name">Relating to Others</span>
+          <p class="domain-desc">Closer, more authentic connections and a greater capacity for compassion and vulnerability.</p>
+        </div>
+        <div class="domain-card">
+          <span class="domain-number">03</span>
+          <span class="domain-name">New Possibilities</span>
+          <p class="domain-desc">An openness to new paths, purposes, and directions that may not have existed before the trauma.</p>
+        </div>
+        <div class="domain-card">
+          <span class="domain-number">04</span>
+          <span class="domain-name">Personal Strength</span>
+          <p class="domain-desc">A discovered resilience and capability that only becomes visible under pressure.</p>
+        </div>
+        <div class="domain-card" style="grid-column: 1 / -1;">
+          <span class="domain-number">05</span>
+          <span class="domain-name">Spiritual Change</span>
+          <p class="domain-desc">A deepened or transformed sense of meaning, faith, and understanding of life's larger questions.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ══════════════════════════════════════════════
+       WHO IT'S FOR
+  ══════════════════════════════════════════════ -->
+  <section id="for" class="section section--dark">
+    <div class="container">
+
+      <div class="reveal">
+        <span class="section-label">Who this is for</span>
+        <h2 class="section-title">Trauma doesn't belong<br>to <em>any one uniform.</em></h2>
+      </div>
+
+      <div class="reveal">
+        <p>
+          This work was born out of my experience with veterans and first
+          responders — people who carry trauma that most of the world never sees
+          and never fully understands. The research and the results I have
+          witnessed in that community are the foundation of everything in these
+          pages.
+        </p>
+        <p>
+          But trauma does not belong exclusively to those who have served.
+          Loss, abuse, illness, addiction, grief, violence, the slow erosion
+          of a life that didn't go the way it was supposed to — these are human
+          experiences. The invisible wounds do not belong to any one uniform or
+          profession or background. The capacity for post-traumatic growth belongs
+          to every person willing to reach for it.
+        </p>
+      </div>
+
+      <ul class="for-list reveal">
+        <li>The combat veteran who came home and couldn't find themselves.</li>
+        <li>The first responder who has seen too much and said too little.</li>
+        <li>The person who lost someone they loved and blamed themselves for years.</li>
+        <li>The person who looked in the mirror, saw where they were headed, and decided they wanted something different.</li>
+        <li>Anyone who has been through the worst and is still here — and wants to do more than just survive it.</li>
+      </ul>
+
+      <div class="reveal">
+        <blockquote class="pull-quote">
+          "You don't need to be sure you can do this.
+          You just need to be willing to try."
+        </blockquote>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ══════════════════════════════════════════════
+       HOW IT WORKS
+  ══════════════════════════════════════════════ -->
+  <section id="how" class="section section--mid">
+    <div class="container">
+
+      <div class="reveal">
+        <span class="section-label">The journal</span>
+        <h2 class="section-title">90 days.<br><em>Two pathways. One practice.</em></h2>
+        <p>
+          <em style="color:var(--cream);">Today I Choose to Grow</em> is a 90-day
+          structured journal built around the five domains of post-traumatic growth.
+          The first 30 days are your foundation — cycling through all five domains,
+          going deeper each time. The final 60 days are yours to direct, spending
+          more time in the areas moving you most.
+        </p>
+        <p>
+          Every single day offers two pathways — because growth doesn't ask you to
+          show up perfectly.
+        </p>
+      </div>
+
+      <div class="pathway-grid reveal">
+        <div class="pathway-card pathway-card--essential">
+          <span class="pathway-tag">For the hard days</span>
+          <div class="pathway-title">The Essential Pathway</div>
+          <p class="pathway-desc">
+            A single reflection prompt and a space to write. Five to ten minutes.
+            That is all it asks. On the days when getting out of bed felt like an
+            achievement — the Essential Pathway is enough. Showing up is enough.
+          </p>
+        </div>
+        <div class="pathway-card pathway-card--extended">
+          <span class="pathway-tag">For when you're ready</span>
+          <div class="pathway-title">The Extended Pathway</div>
+          <p class="pathway-desc">
+            For the days when you have more capacity. It goes deeper and asks
+            harder questions. Post-traumatic growth lives in the uncomfortable
+            places — and this is where the real work gets done. Worth every
+            difficult minute.
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top: 32px;">
+        <p>
+          The only rule: keep showing up. The only way to fail at this journal is
+          to never open it again.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ══════════════════════════════════════════════
+       FREE PREVIEW
+  ══════════════════════════════════════════════ -->
+  <section id="preview" class="section section--light">
+    <div class="container--wide">
+      <div class="preview-grid">
+
+        <!-- Left: mockup -->
+        <div class="reveal">
+          <div class="journal-mockup">
+            <div class="journal-mockup-title">Today I Choose<br>to Grow</div>
+            <div class="journal-mockup-sub">A 90-Day Post-Traumatic Growth Journal</div>
+            <div class="journal-day-preview">
+              <span class="journal-day-label">Free Preview Includes</span>
+              <div class="journal-day-title">Introduction — A Note Before You Begin</div>
+              <p class="journal-day-desc" style="margin-bottom: 14px;">The full author introduction — where this journal came from and why it was built.</p>
+              <div class="journal-day-title">Days 1–5: The Foundation Begins</div>
+              <p class="journal-day-desc">Your first five days across all five domains of post-traumatic growth — with both Essential and Extended pathways.</p>
+              <div class="journal-dots">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <div class="reveal">
+          <span class="section-label">Free download</span>
+          <h2 class="section-title">Read the first<br>five days — <em>on me.</em></h2>
+          <p class="preview-sub">
+            Before you decide if this journal is for you, I want you to
+            experience it. Enter your name and email and I'll send you the
+            introduction and your first five days — no strings attached.
+          </p>
+          <ul class="preview-includes">
+            <li>The full introduction and author note</li>
+            <li>Day 1 — Appreciation of Life</li>
+            <li>Day 2 — Relating to Others</li>
+            <li>Day 3 — New Possibilities</li>
+            <li>Day 4 — Personal Strength</li>
+            <li>Day 5 — Spiritual Change</li>
+            <li>Both Essential and Extended pathways for each day</li>
+          </ul>
+
+          <!-- ⬇ Connect this form to Mailchimp / ConvertKit / your email provider -->
+          <form class="download-form" action="#" method="POST">
+            <div class="form-row">
+              <input class="form-input" type="text" name="first_name" placeholder="First name" required />
+              <input class="form-input" type="email" name="email" placeholder="Email address" required />
+            </div>
+            <button type="submit" class="btn-primary" style="text-align:center;">Send Me the Free Preview</button>
+            <p class="form-note">
+              No spam. Ever. Your email will only be used to send your preview
+              and to notify you when the journal is available.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ══════════════════════════════════════════════
+       PRE-ORDER / WAITLIST
+  ══════════════════════════════════════════════ -->
+  <section id="preorder" class="section section--dark">
+    <div class="container--wide">
+
+      <div class="reveal" style="max-width: 600px;">
+        <span class="section-label">Pre-order &amp; waitlist</span>
+        <h2 class="section-title">Be the first to<br><em>hold this in your hands.</em></h2>
+        <p>
+          The journal is in its final development. Pre-order a physical copy
+          at a founding supporter price — or join the waitlist to be notified
+          the moment it's available.
+        </p>
+      </div>
+
+      <div class="preorder-grid reveal">
+
+        <!-- Pre-order card -->
+        <div class="order-card order-card--featured">
+          <div class="order-badge">Founding Supporter</div>
+          <span class="order-label">Pre-Order — Physical Journal</span>
+          <div class="order-title">Today I Choose<br>to Grow</div>
+          <span class="order-price">$15</span>
+          <p class="order-price-note">Physical journal · Shipped when available · Limited founding price</p>
+          <ul class="order-features">
+            <li>90-day physical journal — printed and bound</li>
+            <li>Full introduction + 90 daily entries (Essential &amp; Extended)</li>
+            <li>Access to companion video library (QR codes included)</li>
+            <li>Founding supporter acknowledgment</li>
+            <li>First to receive updates as the project grows</li>
+          </ul>
+          <!-- ⬇ Connect to Stripe, Gumroad, or your payment processor -->
+          <a href="#" class="btn-primary" style="display:block; text-align:center;">Pre-Order Now — $15</a>
+          <p class="form-note" style="margin-top: 12px; text-align: center;">
+            You will not be charged until the journal ships. Expected delivery TBD.
+          </p>
+        </div>
+
+        <!-- Waitlist card -->
+        <div class="order-card">
+          <span class="order-label">Not ready to pre-order?</span>
+          <div class="order-title">Join the<br>Waitlist</div>
+          <span class="order-price" style="font-size: 2rem; color: var(--cream-dim);">Free</span>
+          <p class="order-price-note">No commitment · Be first to know · Unsubscribe anytime</p>
+          <ul class="order-features">
+            <li>First notification when the journal launches</li>
+            <li>Launch pricing before it goes public</li>
+            <li>Updates on the project as it develops</li>
+          </ul>
+
+          <!-- ⬇ Connect this form to your email provider -->
+          <form class="waitlist-form" action="#" method="POST">
+            <input class="form-input" type="text" name="first_name" placeholder="First name" required />
+            <input class="form-input" type="email" name="email" placeholder="Email address" required />
+            <button type="submit" class="btn-ghost">Join the Waitlist</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ══════════════════════════════════════════════
+       CLOSING CTA
+  ══════════════════════════════════════════════ -->
+  <section id="closing" class="section">
+    <div class="container reveal">
+      <h2 class="closing-title">
+        "Today I choose to grow."
+      </h2>
+      <p class="closing-sub">
+        That's all this asks. Not perfection. Not certainty.
+        Just the decision, made one more time, to keep going.
+      </p>
+      <a href="#preview" class="btn-primary">Start With the Free Preview</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-name">Michael Anthony</div>
+      <div class="footer-note">michaelanthonygrows.com</div>
+      <div class="footer-links">
+        <a href="#story">My Story</a>
+        <a href="#preview">Free Preview</a>
+        <a href="#preorder">Pre-Order</a>
+        <!-- <a href="mailto:you@youremail.com">Contact</a> -->
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── SCROLL REVEAL SCRIPT ───────────────────── -->
+  <script>
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav: go solid on scroll
+    const nav = document.getElementById('site-nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Mobile hamburger toggle
+    const toggle = document.getElementById('nav-toggle');
+    const links  = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open);
+    });
+
+    // Close mobile menu when a link is clicked
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        links.classList.remove('open');
+        toggle.classList.remove('open');
+        toggle.setAttribute('aria-expanded', false);
+      });
+    });
+  </script>
+
+</body>
+</html>
