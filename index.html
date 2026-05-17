@@ -869,7 +869,7 @@
         <li><a href="#story">My Story</a></li>
         <li><a href="#for">The Journal</a></li>
         <li><a href="#preview">Free Preview</a></li>
-        <li><a href="#preorder" class="nav-cta">Pre-Order</a></li>
+        <li><a href="#preorder" class="nav-cta">Get Notified</a></li>
       </ul>
 
     </div>
@@ -1252,69 +1252,67 @@
   <hr class="rule" />
 
   <!-- ══════════════════════════════════════════════
-       PRE-ORDER / WAITLIST
+       FOUNDING SUPPORTER / WAITLIST
   ══════════════════════════════════════════════ -->
   <section id="preorder" class="section section--dark">
-    <div class="container--wide">
+    <div class="container">
 
-      <div class="reveal" style="max-width: 600px;">
-        <span class="section-label">Pre-order &amp; waitlist</span>
+      <div class="reveal">
+        <span class="section-label">Founding supporters</span>
         <h2 class="section-title">Be the first to<br><em>hold this in your hands.</em></h2>
         <p>
-          The journal is in its final development. Pre-order a physical copy
-          at a founding supporter price — or join the waitlist to be notified
-          the moment it's available.
+          The journal is in its final development — being tested, refined, and
+          built to last. It is not ready yet. But when it is, founding supporters
+          will hear first and be offered the journal at a price that will never
+          be available again.
         </p>
       </div>
 
-      <div class="preorder-grid reveal">
+      <div class="reveal" style="
+        margin-top: 48px;
+        border: 1px solid var(--gold-dim);
+        background: rgba(184,146,74,0.04);
+        padding: 56px 48px;
+        max-width: 620px;
+        position: relative;
+      ">
+        <div class="order-badge">Founding Supporter Price — $20</div>
 
-        <!-- Pre-order card -->
-        <div class="order-card order-card--featured">
-          <div class="order-badge">Founding Supporter</div>
-          <span class="order-label">Pre-Order — Physical Journal</span>
-          <div class="order-title">Today I Choose<br>to Grow</div>
-          <span class="order-price">$20</span>
-          <p class="order-price-note">Physical journal · Shipped when available · Limited founding price</p>
-          <ul class="order-features">
-            <li>90-day physical journal — printed and bound</li>
-            <li>Full introduction + 90 daily entries (Essential &amp; Extended)</li>
-            <li>Access to companion video library (QR codes included)</li>
-            <li>Founding supporter acknowledgment</li>
-            <li>First to receive updates as the project grows</li>
-          </ul>
-          <!-- ⬇ Connect to Stripe, Gumroad, or your payment processor -->
-          <a href="#" class="btn-primary" style="display:block; text-align:center;">Pre-Order Now — $20</a>
+        <span class="order-label" style="margin-top: 16px; display:block;">Physical Journal · Print Edition</span>
+        <div class="order-title">Today I Choose<br>to Grow</div>
+
+        <ul class="order-features" style="margin: 24px 0 32px;">
+          <li>90-day physical journal — printed and bound</li>
+          <li>Full introduction + 90 daily entries with Essential &amp; Extended pathways</li>
+          <li>Companion video library access via QR codes</li>
+          <li>Founding supporter price — locked before public launch</li>
+          <li>First notification the moment it's available to order</li>
+        </ul>
+
+        <p style="font-size: 0.9rem; color: var(--cream-dim); margin-bottom: 24px;">
+          Leave your name and email below. You pay nothing now.
+          When the journal is ready, you'll hear from me first —
+          with the founding supporter price and everything you need to order.
+        </p>
+
+        <!-- Waitlist form — connected to Mailchimp Waitlist audience -->
+        <form class="waitlist-form" action="https://michaelanthonygrows.us10.list-manage.com/subscribe/post?u=8f43ea4ded53f80b7919cb6d4&amp;id=f496dbb35b&amp;f_id=008ca5e3f0" method="POST" target="_blank">
+          <!-- Mailchimp bot protection — do not remove -->
+          <div style="position:absolute;left:-5000px;" aria-hidden="true">
+            <input type="text" name="b_8f43ea4ded53f80b7919cb6d4_f496dbb35b" tabindex="-1" value="" />
+          </div>
+          <input class="form-input" type="text" name="FNAME" placeholder="First name" required style="margin-bottom: 10px;" />
+          <input class="form-input" type="email" name="EMAIL" placeholder="Email address" required style="margin-bottom: 10px;" />
+          <button type="submit" class="btn-primary" style="width:100%; text-align:center; margin-top: 4px;">
+            Notify Me When It's Available
+          </button>
           <p class="form-note" style="margin-top: 12px; text-align: center;">
-            You will not be charged until the journal ships. Expected delivery TBD.
+            No payment now. No spam. Ever. Just a message from me when it's ready.
           </p>
-        </div>
-
-        <!-- Waitlist card -->
-        <div class="order-card">
-          <span class="order-label">Not ready to pre-order?</span>
-          <div class="order-title">Join the<br>Waitlist</div>
-          <span class="order-price" style="font-size: 2rem; color: var(--cream-dim);">Free</span>
-          <p class="order-price-note">No commitment · Be first to know · Unsubscribe anytime</p>
-          <ul class="order-features">
-            <li>First notification when the journal launches</li>
-            <li>Launch pricing before it goes public</li>
-            <li>Updates on the project as it develops</li>
-          </ul>
-
-          <!-- ⬇ Connect this form to your email provider -->
-          <form class="waitlist-form" action="https://michaelanthonygrows.us10.list-manage.com/subscribe/post?u=8f43ea4ded53f80b7919cb6d4&amp;id=f496dbb35b&amp;f_id=008ca5e3f0" method="POST" target="_blank">
-            <!-- Mailchimp bot protection — do not remove -->
-            <div style="position:absolute;left:-5000px;" aria-hidden="true">
-              <input type="text" name="b_8f43ea4ded53f80b7919cb6d4_f496dbb35b" tabindex="-1" value="" />
-            </div>
-            <input class="form-input" type="text" name="FNAME" placeholder="First name" required />
-            <input class="form-input" type="email" name="EMAIL" placeholder="Email address" required />
-            <button type="submit" class="btn-ghost">Join the Waitlist</button>
-          </form>
-        </div>
+        </form>
 
       </div>
+
     </div>
   </section>
 
